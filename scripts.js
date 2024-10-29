@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
+    const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
+
     function showLoading() {
         $('#loading').show();
     }
@@ -9,7 +12,7 @@ $(document).ready(function() {
 
     function loadPosts() {
         $.ajax({
-            url: 'https://jsonplaceholder.typicode.com/posts',
+            url: POSTS_URL,
             method: 'GET',
             beforeSend: function() {
                 showLoading();
@@ -38,7 +41,7 @@ $(document).ready(function() {
 
     function loadComments(postId) {
         showLoading();
-        fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+        fetch(`${COMMENTS_URL}?postId=${postId}`)
             .then(response => response.json())
             .then(comments => {
                 hideLoading();
